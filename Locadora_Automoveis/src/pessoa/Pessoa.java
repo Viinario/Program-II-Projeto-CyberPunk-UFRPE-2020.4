@@ -4,7 +4,7 @@ public abstract class Pessoa {
 	private String nome;
 	private String login;
 	private String senha;
-	
+	//
 	public Pessoa(String nome,String login,  String senha)  {
 		this.setNome(nome);
 		this.setLogin(login);

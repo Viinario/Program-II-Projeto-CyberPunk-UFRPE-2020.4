@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.InterfaceLogin;
-
+//Banco de Dados 
 public class BancoPessoas implements InterfaceLogin{
 	private List<Pessoa> pessoas = new ArrayList<>();
 	private List<Pessoa> administradores = new ArrayList<>();

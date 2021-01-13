@@ -1,5 +1,5 @@
 package veiculo;
-
+//
 public abstract class Veiculo {
 private String fabricante;
 private String modelo;

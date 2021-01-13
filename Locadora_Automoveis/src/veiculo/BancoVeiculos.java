@@ -5,7 +5,7 @@ import java.util.List;
 
 import interfaces.InterfaceCliente;
 import pessoa.Cliente;
-
+//Banco de Dados 
 public class BancoVeiculos implements InterfaceCliente{
 	private List<Veiculo> veiculos = new ArrayList<>();
 	private List<Veiculo> utilitarios = new ArrayList<>(); 

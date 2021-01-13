@@ -1,5 +1,5 @@
 package pessoa;
-
+//admin
 public class Administrador extends Pessoa{
 	public Administrador(String nome, String login, String senha) {
 		super(nome, login, senha);
