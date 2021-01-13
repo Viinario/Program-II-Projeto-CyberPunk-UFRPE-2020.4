@@ -6,13 +6,17 @@ private String modelo;
 private String placa;
 private String ano;
 private String cor;
+private float diaria;
+private boolean disponibilidade;
 
-public Veiculo(String fabricante, String modelo, String placa, String ano, String cor) {
+public Veiculo(String fabricante, String modelo, String placa, String ano, String cor, float diaria , boolean disponibilidade) {
 	this.setFabricante(fabricante);
 	this.setModelo(modelo);
 	this.setPlaca(placa);
 	this.setAno(ano);
 	this.setCor(cor);
+	this.setDiaria(diaria);
+	this.setDisponibilidade(disponibilidade);
 }
 @Override
 public  String toString() {
@@ -68,5 +72,17 @@ public String getCor() {
 
 public void setCor(String cor) {
 	this.cor = cor;
+}
+public boolean isDisponibilidade() {
+	return disponibilidade;
+}
+public void setDisponibilidade(boolean disponibilidade) {
+	this.disponibilidade = disponibilidade;
+}
+public float getDiaria() {
+	return diaria;
+}
+public void setDiaria(float diaria) {
+	this.diaria = diaria;
 }
 }

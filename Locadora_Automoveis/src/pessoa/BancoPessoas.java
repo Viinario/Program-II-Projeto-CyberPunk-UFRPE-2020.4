@@ -3,7 +3,9 @@ package pessoa;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BancoPessoas {
+import interfaces.InterfaceLogin;
+
+public class BancoPessoas implements InterfaceLogin{
 	private List<Pessoa> pessoas = new ArrayList<>();
 	private List<Pessoa> administradores = new ArrayList<>();
 	private List<Pessoa> clientes = new ArrayList<>();
@@ -33,6 +35,20 @@ public class BancoPessoas {
 		for(Pessoa obj: clientes) {
 			System.out.println(obj);
 		}
+	}
+	@Override
+	public boolean login(String login, String senha) {
+		for(Pessoa obj: pessoas) {
+			if((obj.getLogin() == login) && (obj.getSenha() == senha)) {
+				return true;
+			}
+		}return false;
+		
+	}
+	@Override
+	public void registrar(String nome, String login, String senha) {
+		Cliente cliente = new Cliente(nome, login, senha);
+		cadastrarPessoa(cliente);
 	}
 }
 

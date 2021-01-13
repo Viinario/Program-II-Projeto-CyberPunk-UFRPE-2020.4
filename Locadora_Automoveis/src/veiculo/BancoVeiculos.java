@@ -3,7 +3,10 @@ package veiculo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BancoVeiculos {
+import interfaces.InterfaceCliente;
+import pessoa.Cliente;
+
+public class BancoVeiculos implements InterfaceCliente{
 	private List<Veiculo> veiculos = new ArrayList<>();
 	private List<Veiculo> utilitarios = new ArrayList<>(); 
 	private List<Veiculo> populares = new ArrayList<>(); 
@@ -32,29 +35,60 @@ public void cadastrarVeiculo(Veiculo veiculo) {
 		System.out.println("ERROR|OPERAÇÃO; ESSE VEICULO JÁ EXISTE");
 	}
 	}
-public void listarVeiculos() {
-	System.out.println("LISTA DE TODOS OS VEICULOS");
-	for(Veiculo obj: veiculos) {
-		System.out.println(obj);
-	}
-}
-public void listarUtilitarios() {
+
+@Override
+public List<Veiculo> visualizarUtilitarios() {
 	System.out.println("\nLISTA DE TODOS OS UTILITARIOS");
 	for(Veiculo obj: utilitarios) {
 		System.out.println(obj);
 	}
+	return utilitarios;
 }
-public void listarLuxos() {
-	System.out.println("\nLISTA DE TODOS OS LUXUOSOS");
-	for(Veiculo obj: luxos) {
-		System.out.println(obj);
-	}
-}
-public void listarPopulares() {
+
+@Override
+public List<Veiculo> visualizarPopulares() {
 	System.out.println("\nLISTA DE TODOS OS POPULARES");
 	for(Veiculo obj: populares) {
 		System.out.println(obj);
 	}
+	return populares;
+}
+
+@Override
+public List<Veiculo> visualizarLuxos() {
+	System.out.println("\nLISTA DE TODOS OS LUXUOSOS");
+	for(Veiculo obj: luxos) {
+		System.out.println(obj);
+	}
+	return luxos;
+}
+
+@Override
+public List<Veiculo> visualizarHistoricoPessoal(Cliente cliente) {
+	System.out.printf("LISTA DE TODOS OS VEICULOS CLIENTE: %s", cliente.getNome());
+	for(Veiculo obj: cliente.getVeiculoHistorico()) {
+		System.out.println(obj);
+	}
+	return cliente.getVeiculoHistorico();
+}
+
+@Override
+public void alugarVeiculo(Cliente cliente, Veiculo veiculo) {
+	if(veiculo.isDisponibilidade() == true) {
+		veiculo.setDisponibilidade(false);
+		cliente.registrarVeiculoHistorico(veiculo);
+		System.out.printf("voce alugou \nVeiculo: %s \n Placa:", veiculo.getModelo(), veiculo.getPlaca());
+	}else {
+		System.out.println("Veiculo indisponível");
+	}
+}
+
+@Override
+public double calcularTotal(Veiculo veiculo, int dias) {
+	double total = 0;
+	total = veiculo.getDiaria() * dias;
+	return total;
+	
 }
 }
 
