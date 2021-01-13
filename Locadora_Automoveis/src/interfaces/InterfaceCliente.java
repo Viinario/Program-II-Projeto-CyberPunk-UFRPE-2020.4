@@ -5,7 +5,7 @@ import veiculo.Veiculo;
 import java.util.List;
 
 import pessoa.Cliente;
-
+// client interface
 public interface InterfaceCliente {
 	
 	List<Veiculo> visualizarUtilitarios();
