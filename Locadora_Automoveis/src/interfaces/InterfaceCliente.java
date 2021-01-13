@@ -2,7 +2,6 @@ package interfaces;
 
 import veiculo.Veiculo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import pessoa.Cliente;
