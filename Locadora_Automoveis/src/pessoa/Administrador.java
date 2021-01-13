@@ -1,4 +1,4 @@
-package Pessoa;
+package pessoa;
 
 public class Administrador extends Pessoa{
 	public Administrador(String nome, String login, String senha) {
