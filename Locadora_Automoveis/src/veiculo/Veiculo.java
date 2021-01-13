@@ -21,7 +21,7 @@ public  String toString() {
 @Override
 public boolean equals(Object obj) {
 	Veiculo veiculo = (Veiculo)obj;
-	if(placa.equals(veiculo.getPlaca()) == true) {
+	if(getPlaca().equals(veiculo.getPlaca()) == true) {
 		return true;
 	}
 	else {
