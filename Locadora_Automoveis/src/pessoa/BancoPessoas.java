@@ -3,6 +3,8 @@ package pessoa;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import interfaces.InterfaceLogin;
 //Banco de Dados 
 public class BancoPessoas implements InterfaceLogin{
@@ -23,11 +25,12 @@ public class BancoPessoas implements InterfaceLogin{
 			pessoas.add(pessoa);
 			if (pessoa instanceof Cliente) {
 				clientes.add(pessoa);
+				JOptionPane.showMessageDialog(null,"Conta Criada Com Sucesso!");
 			}else if(pessoa instanceof Administrador){
 				administradores.add(pessoa);
 			}
 		}else {
-			System.out.println("ERROR|OPERAÇÃO PESSOA JÁ RESGISTRADA");
+			JOptionPane.showMessageDialog(null,"Falha ao criar conta. \n Conta ja existente.", "Error log", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	public void listarClientes() {
@@ -43,6 +46,8 @@ public class BancoPessoas implements InterfaceLogin{
 			String login1 = obj.getLogin().toString();
 			String senha1 = obj.getSenha().toString();
 			if(login1.equals(login) == true && senha1.equals(senha) == true) {
+				String bemVindo= "Bem Vindo!\n" + obj.getNome();
+				JOptionPane.showMessageDialog(null, bemVindo);
 				return true;
 			}
 			}

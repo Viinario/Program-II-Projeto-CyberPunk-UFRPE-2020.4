@@ -19,6 +19,8 @@ import java.awt.Color;
 import java.awt.Window.Type;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
@@ -188,6 +190,13 @@ public class SignUp extends SignIn {
 		contentPane.setLayout(gl_contentPane);
 	}
 	public void SignUpAction() {
-		bancoPessoas.registrar(nomeText.getText(), cnhText.getText(),loginText.getText(), passText.getText());
+		if(nomeText.getText().isEmpty() == true || cnhText.getText().isEmpty() == true || loginText.getText().isEmpty() == true
+				|| passText.getText().isEmpty() == true || ConfPassText.getText().isEmpty() == true) {
+			JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warming", JOptionPane.WARNING_MESSAGE);
+		}else if(passText.getText().equals(ConfPassText.getText()) == false){
+			JOptionPane.showMessageDialog(null,"Passwords não são iguais","Warming", JOptionPane.WARNING_MESSAGE);
+		}else{
+			bancoPessoas.registrar(nomeText.getText(), cnhText.getText(),loginText.getText(), passText.getText());
+		}
 	}
 }

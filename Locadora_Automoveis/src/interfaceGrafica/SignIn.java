@@ -130,7 +130,6 @@ public class SignIn extends JFrame {
 					}
 				else {
 					if (bancoPessoas.login(textField_1.getText(), textField.getText()) == true){
-						JOptionPane.showMessageDialog(null,"Bem Vindo");
 				}
 					else {
 						JOptionPane.showMessageDialog(null,"Conta Não Encontrada","Login Error", JOptionPane.WARNING_MESSAGE);
