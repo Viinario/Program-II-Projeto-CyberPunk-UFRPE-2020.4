@@ -13,7 +13,7 @@ public class Cliente extends Pessoa{
 	}
 	@Override
 	public  String toString() {
-		return String.format("\n-------CLIENTE----------\nNome: %s \nLogin: %s  \nSenha: %s",getNome(), getLogin(), getSenha());
+		return String.format("\n-------CLIENTE----------\nNome: %s \nCNH: %s \nLogin: %s  \nSenha: %s",getNome(),getCnh() ,getLogin(), getSenha());
 	}
 	@Override
 	public boolean equals(Object obj) {

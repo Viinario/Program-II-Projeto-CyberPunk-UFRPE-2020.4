@@ -1,30 +1,36 @@
 package interfaceGrafica;
 
+import interfaces.InterfaceLogin;
+import pessoa.BancoPessoas;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
 
-public class SignUp extends JFrame {
-
+public class SignIn extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-
+	static InterfaceLogin bancoPessoas = new BancoPessoas();
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +38,7 @@ public class SignUp extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignUp frame = new SignUp();
+					SignIn frame = new SignIn();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,10 +50,10 @@ public class SignUp extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SignUp() {
+	public SignIn() {
 		setTitle("Need For Rent");
 		setForeground(Color.BLACK);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(SignUp.class.getResource("/interfaceGrafica/Images/login69.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SignIn.class.getResource("/interfaceGrafica/Images/login69.png")));
 		setResizable(false);
 		setBackground(Color.BLACK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,12 +65,12 @@ public class SignUp extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/login-64.png")));
+		lblNewLabel.setIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/login-64.png")));
 		lblNewLabel.setBounds(36, 149, 73, 100);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/carro.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/carro.png")));
 		lblNewLabel_1.setBounds(0, 283, 384, 115);
 		contentPane.add(lblNewLabel_1);
 		
@@ -80,7 +86,7 @@ public class SignUp extends JFrame {
 		lblNewLabel_3.setBounds(119, 212, 79, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		textField = new JTextField();
+		textField = new JPasswordField();
 		textField.setFont(new Font("Arial", Font.PLAIN, 13));
 		textField.setBounds(208, 211, 86, 20);
 		contentPane.add(textField);
@@ -99,21 +105,41 @@ public class SignUp extends JFrame {
 		contentPane.add(lblNewLabel_4);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setSelectedIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/SignUp.png")));
+		btnNewButton.setSelectedIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/SignUp.png")));
 		btnNewButton.setBackground(Color.BLACK);
-		btnNewButton.setIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/SignUp.png")));
+		btnNewButton.setIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/SignUp.png")));
 		btnNewButton.setBounds(149, 56, 79, 29);
 		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(e -> SignUpPanel());
 		
 		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/flogo.png")));
+		lblNewLabel_5.setIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/flogo.png")));
 		lblNewLabel_5.setBounds(305, 11, 79, 86);
 		contentPane.add(lblNewLabel_5);
 		
 		JButton btnNewButton_1 = new JButton("");
 		btnNewButton_1.setBackground(Color.BLACK);
-		btnNewButton_1.setIcon(new ImageIcon(SignUp.class.getResource("/interfaceGrafica/Images/Signin.png")));
+		btnNewButton_1.setIcon(new ImageIcon(SignIn.class.getResource("/interfaceGrafica/Images/Signin.png")));
 		btnNewButton_1.setBounds(208, 242, 89, 23);
 		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(e -> SignInAction());
 	}
+	  public void  SignInAction(){
+				if(textField.getText().isEmpty() == true || textField_1.getText().isEmpty() == true) {
+					JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warming", JOptionPane.WARNING_MESSAGE);
+					}
+				else {
+					if (bancoPessoas.login(textField_1.getText(), textField.getText()) == true){
+						JOptionPane.showMessageDialog(null,"Bem Vindo");
+				}
+					else {
+						JOptionPane.showMessageDialog(null,"Conta Não Encontrada","Login Error", JOptionPane.WARNING_MESSAGE);
+					}
+	}
+		}
+	public void SignUpPanel() {
+		SignUp signUp = new SignUp();
+		signUp.setVisible(true);
+	  }
 }
+
