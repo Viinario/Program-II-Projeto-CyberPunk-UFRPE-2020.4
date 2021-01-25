@@ -2,6 +2,8 @@ package interfaceGrafica;
 
 import interfaces.InterfaceLogin;
 import pessoa.BancoPessoas;
+import pessoa.Cliente;
+import pessoa.Pessoa;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -19,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
@@ -30,7 +33,8 @@ public class SignIn extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	static InterfaceLogin bancoPessoas = new BancoPessoas();
+	protected InterfaceLogin bancoPessoas = new BancoPessoas();
+	protected static Cliente clienteLogado;
 	/**
 	 * Launch the application.
 	 */
@@ -129,10 +133,16 @@ public class SignIn extends JFrame {
 					JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warming", JOptionPane.WARNING_MESSAGE);
 					}
 				else {
-					if (bancoPessoas.login(textField_1.getText(), textField.getText()) == true){
+					if (bancoPessoas.login(textField_1.getText(), textField.getText()) == null){
+						JOptionPane.showMessageDialog(null,"Conta Não Encontrada","Login Error", JOptionPane.WARNING_MESSAGE);
+						
 				}
 					else {
-						JOptionPane.showMessageDialog(null,"Conta Não Encontrada","Login Error", JOptionPane.WARNING_MESSAGE);
+						clienteLogado = bancoPessoas.login(textField_1.getText(), textField.getText());
+						String bemVindo= "Bem Vindo!\n" + clienteLogado.getNome();
+						JOptionPane.showMessageDialog(null, bemVindo);
+						TelaCliente telaCliente = new TelaCliente();
+						telaCliente.setVisible(true);
 					}
 	}
 		}
@@ -140,5 +150,5 @@ public class SignIn extends JFrame {
 		SignUp signUp = new SignUp();
 		signUp.setVisible(true);
 	  }
-}
+	}
 
