@@ -9,10 +9,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
-public class TelaAdmin {
+public class TelaAdmin extends SignIn{
 
-	private JFrame frame;
+	private JFrame frmAdmin;
 
 	/**
 	 * Launch the application.
@@ -22,7 +23,7 @@ public class TelaAdmin {
 			public void run() {
 				try {
 					TelaAdmin window = new TelaAdmin();
-					window.frame.setVisible(true);
+					window.frmAdmin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,31 +42,35 @@ public class TelaAdmin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 720, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmAdmin = new JFrame();
+		frmAdmin.setTitle("Admin");
+		frmAdmin.setBounds(100, 100, 720, 500);
+		frmAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmAdmin.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Administra\u00E7\u00E3o");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel.setBounds(301, 11, 117, 36);
-		frame.getContentPane().add(lblNewLabel);
+		frmAdmin.getContentPane().add(lblNewLabel);
 		
 		JButton botaoBuscarCliente = new JButton("Buscar cliente");
-		botaoBuscarCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		botaoBuscarCliente.setBounds(223, 243, 117, 71);
-		frame.getContentPane().add(botaoBuscarCliente);
+		botaoBuscarCliente.setBounds(177, 243, 150, 48);
+		frmAdmin.getContentPane().add(botaoBuscarCliente);
+		botaoBuscarCliente.addActionListener(e -> clientSearch());
 		
-		JButton botaoBuscarVeiculo = new JButton("Buscar veiculo");
-		botaoBuscarVeiculo.setBounds(387, 243, 117, 71);
-		frame.getContentPane().add(botaoBuscarVeiculo);
+		JButton botaoBuscarVeiculo = new JButton("Buscar ve\u00EDculo");
+		botaoBuscarVeiculo.setBounds(363, 243, 150, 48);
+		frmAdmin.getContentPane().add(botaoBuscarVeiculo);
 		
 		JLabel lblNewLabel_1 = new JLabel("Selecione uma op\u00E7\u00E3o");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(301, 159, 128, 30);
-		frame.getContentPane().add(lblNewLabel_1);
+		frmAdmin.getContentPane().add(lblNewLabel_1);
 	}
-}
+	
+	public void clientSearch() {
+		TelaBuscarCliente buscarCliente = new TelaBuscarCliente();
+		buscarCliente.setVisible(true);
+	}
+
+} 
