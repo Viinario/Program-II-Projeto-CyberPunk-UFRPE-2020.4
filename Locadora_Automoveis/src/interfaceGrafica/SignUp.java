@@ -192,9 +192,9 @@ public class SignUp extends SignIn {
 	public void SignUpAction() {
 		if(nomeText.getText().isEmpty() == true || cnhText.getText().isEmpty() == true || loginText.getText().isEmpty() == true
 				|| passText.getText().isEmpty() == true || ConfPassText.getText().isEmpty() == true) {
-			JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warming", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warning", JOptionPane.WARNING_MESSAGE);
 		}else if(passText.getText().equals(ConfPassText.getText()) == false){
-			JOptionPane.showMessageDialog(null,"Passwords não são iguais","Warming", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null,"Passwords não são iguais","Warning", JOptionPane.WARNING_MESSAGE);
 		}else{
 			bancoPessoas.registrar(nomeText.getText(), cnhText.getText(),loginText.getText(), passText.getText());
 		}
