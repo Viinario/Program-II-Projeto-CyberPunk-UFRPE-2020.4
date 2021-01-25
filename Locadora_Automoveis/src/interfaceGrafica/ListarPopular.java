@@ -11,11 +11,20 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import veiculo.Popular;
+import veiculo.Veiculo;
+
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class ListarPopular extends TelaVeiculo {
 
 	private JPanel contentPane;
 	private JTable table;
+	static Object[] dados;
 
 	/**
 	 * Launch the application.
@@ -40,11 +49,12 @@ public class ListarPopular extends TelaVeiculo {
 		setBounds(100, 100, 675, 362);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		contentPane.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setBounds(5, 5, 654, 317);
+		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -64,6 +74,16 @@ public class ListarPopular extends TelaVeiculo {
 		table.getColumnModel().getColumn(5).setPreferredWidth(92);
 		scrollPane.setViewportView(table);
 	}
-
+	
+public void ShowPopulares(){
+	DefaultTableModel dtmPopulares = (DefaultTableModel) table.getModel();
+	for (Popular obj: bancoVeiculos.visualizarPopulares()) {
+		if (obj.isDisponibilidade() == true) {
+			Object[] dados  = {obj.getFabricante(),obj.getModelo(),obj.getPlaca(),obj.getDiaria(),obj.getConsumo(),obj.isArCondicionado(),
+					obj.getCambio(),obj.getCor()};
+			dtmPopulares.addRow(dados);
+		}
+}
+}
 }
 

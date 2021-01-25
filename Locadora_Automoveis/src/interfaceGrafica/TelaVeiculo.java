@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import veiculo.BancoVeiculos;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -20,6 +23,7 @@ import java.awt.Toolkit;
 public class TelaVeiculo extends TelaCliente {
 
 	private JPanel contentPane;
+	protected static BancoVeiculos bancoVeiculos = new BancoVeiculos();
 
 	/**
 	 * Launch the application.
@@ -54,6 +58,7 @@ public class TelaVeiculo extends TelaCliente {
 		PopularButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarPopular popular = new ListarPopular();
+				popular.ShowPopulares();
 				popular.setVisible(true);
 			}
 		});
@@ -69,6 +74,7 @@ public class TelaVeiculo extends TelaCliente {
 		LuxoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarLuxo luxo = new ListarLuxo();
+				luxo.ShowLuxos();
 				luxo.setVisible(true);
 			}
 		});
@@ -77,6 +83,7 @@ public class TelaVeiculo extends TelaCliente {
 		UtilitarioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListarUtilitario utilitario = new ListarUtilitario();
+				utilitario.ShowUtilitarios();
 				utilitario.setVisible(true);
 			}
 		});

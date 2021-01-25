@@ -7,10 +7,10 @@ import interfaces.InterfaceCliente;
 import pessoa.Cliente;
 //Banco de Dados 
 public class BancoVeiculos implements InterfaceCliente{
-	private List<Veiculo> veiculos = new ArrayList<>();
-	private List<Veiculo> utilitarios = new ArrayList<>(); 
-	private List<Veiculo> populares = new ArrayList<>(); 
-	private List<Veiculo> luxos = new ArrayList<>(); 
+	private static List<Veiculo> veiculos = new ArrayList<>();
+	private static List<Utilitario> utilitarios = new ArrayList<>(); 
+	private static List<Popular> populares = new ArrayList<>(); 
+	private static List<Luxo> luxos = new ArrayList<>(); 
 	
 public  BancoVeiculos() {
 }
@@ -25,11 +25,11 @@ public void cadastrarVeiculo(Veiculo veiculo) {
 	if(checador == false) {
 		veiculos.add(veiculo);
 		if(veiculo instanceof Utilitario) {
-			 utilitarios.add(veiculo);
+			 utilitarios.add((Utilitario)veiculo);
 		}else if(veiculo instanceof Popular) {
-			populares.add(veiculo);
+			populares.add((Popular)veiculo);
 		}else if(veiculo instanceof Luxo) {
-			luxos.add(veiculo);
+			luxos.add((Luxo)veiculo);
 		}
 	}else {
 		System.out.println("ERROR|OPERAÇÃO; ESSE VEICULO JÁ EXISTE");
@@ -37,7 +37,7 @@ public void cadastrarVeiculo(Veiculo veiculo) {
 	}
 
 @Override
-public List<Veiculo> visualizarUtilitarios() {
+public List<Utilitario> visualizarUtilitarios() {
 	System.out.println("\nLISTA DE TODOS OS UTILITARIOS");
 	for(Veiculo obj: utilitarios) {
 		System.out.println(obj);
@@ -46,7 +46,7 @@ public List<Veiculo> visualizarUtilitarios() {
 }
 
 @Override
-public List<Veiculo> visualizarPopulares() {
+public List<Popular> visualizarPopulares() {
 	System.out.println("\nLISTA DE TODOS OS POPULARES");
 	for(Veiculo obj: populares) {
 		System.out.println(obj);
@@ -55,7 +55,7 @@ public List<Veiculo> visualizarPopulares() {
 }
 
 @Override
-public List<Veiculo> visualizarLuxos() {
+public List<Luxo> visualizarLuxos() {
 	System.out.println("\nLISTA DE TODOS OS LUXUOSOS");
 	for(Veiculo obj: luxos) {
 		System.out.println(obj);

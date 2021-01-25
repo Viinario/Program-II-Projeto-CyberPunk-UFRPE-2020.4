@@ -10,6 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import veiculo.Luxo;
+import veiculo.Popular;
+
 public class ListarLuxo extends TelaVeiculo {
 
 	private JPanel contentPane;
@@ -67,6 +70,16 @@ public class ListarLuxo extends TelaVeiculo {
 			}
 		});
 		scrollPane.setViewportView(table);
+	}
+	
+	public void ShowLuxos(){
+		DefaultTableModel dtmLuxos = (DefaultTableModel) table.getModel();
+		for (Luxo obj: bancoVeiculos.visualizarLuxos()) {
+			if (obj.isDisponibilidade() == true) {
+				Object[] dados  = {obj.getFabricante(),obj.getModelo(),obj.getCor(),obj.getPlaca(),obj.getDiaria(),obj.getMotor(),obj.getCambio(),obj.isConversivel()};
+				dtmLuxos.addRow(dados);
+			}
+		}
 	}
 
 }

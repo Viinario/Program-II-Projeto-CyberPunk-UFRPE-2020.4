@@ -10,6 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import veiculo.Popular;
+import veiculo.Utilitario;
+
 public class ListarUtilitario extends TelaVeiculo {
 
 	private JPanel contentPane;
@@ -69,5 +72,14 @@ public class ListarUtilitario extends TelaVeiculo {
 		table.getColumnModel().getColumn(7).setPreferredWidth(121);
 		scrollPane.setViewportView(table);
 	}
-
+	public void ShowUtilitarios(){
+		DefaultTableModel dtmPopulares = (DefaultTableModel) table.getModel();
+		for (Utilitario obj: bancoVeiculos.visualizarUtilitarios()) {
+			if (obj.isDisponibilidade() == true) {
+				Object[] dados  = {obj.getFabricante(),obj.getModelo(),obj.getCor(),obj.getPlaca(),obj.getDiaria(),obj.getAssentos(),
+						obj.getCargaMaxima(),obj.isQuatroXquatro()};
+				dtmPopulares.addRow(dados);
+			}
+		}
+	}
 }

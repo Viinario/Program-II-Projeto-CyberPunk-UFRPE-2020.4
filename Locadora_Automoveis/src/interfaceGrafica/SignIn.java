@@ -149,6 +149,7 @@ public class SignIn extends JFrame {
 	}
 		}
 	public void SignUpPanel() {
+		VeiculosEscanciados veiculosteste = new VeiculosEscanciados();
 		SignUp signUp = new SignUp();
 		signUp.setVisible(true);
 	  }
