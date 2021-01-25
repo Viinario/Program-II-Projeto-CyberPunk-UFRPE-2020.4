@@ -16,6 +16,10 @@ import java.awt.Dimension;
 import javax.swing.JScrollBar;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+
+import veiculo.Luxo;
+import veiculo.Veiculo;
+
 import java.awt.Font;
 
 public class TelaHistoricoVeiculos extends TelaCliente {
@@ -89,5 +93,12 @@ public class TelaHistoricoVeiculos extends TelaCliente {
 		scrollPane.setViewportView(table);
 		contentPane.setLayout(gl_contentPane);
 		
+	}
+	public void showHistoricoVeiculo() {
+		DefaultTableModel dtmHistorico = (DefaultTableModel) table.getModel();
+		for (Veiculo obj: clienteLogado.getVeiculoHistorico()) {
+			Object[] dados  = {obj.getFabricante(),obj.getModelo(),obj.getPlaca()};
+			dtmHistorico.addRow(dados);
+		}
 	}
 }

@@ -90,5 +90,14 @@ public double calcularTotal(Veiculo veiculo, int dias) {
 	return total;
 	
 }
+public Veiculo BuscarVeiculo(String placa) {
+	for (Veiculo obj: veiculos){
+		if (obj.getPlaca().equals(placa)) {
+			return obj;
+		}
+	}
+	return null;
+	
+}
 }
 

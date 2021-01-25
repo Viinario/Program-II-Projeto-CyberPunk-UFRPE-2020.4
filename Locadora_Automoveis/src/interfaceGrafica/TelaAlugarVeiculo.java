@@ -6,20 +6,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import veiculo.Veiculo;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaAlugarVeiculo extends TelaVeiculo {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField placaText;
 	private JTextField textField_1;
 
 	/**
@@ -47,8 +53,26 @@ public class TelaAlugarVeiculo extends TelaVeiculo {
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Alugar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (placaText.getText().isEmpty() == true|| textField_1.getText().isEmpty() == true){
+					JOptionPane.showMessageDialog(null,"Preencha Todos os Campos","Warming", JOptionPane.WARNING_MESSAGE);
+					
+				}else if (bancoVeiculos.BuscarVeiculo(placaText.getText()) == null) {
+					JOptionPane.showMessageDialog(null,"Veiculo Não Encontrado","Warming", JOptionPane.WARNING_MESSAGE);
+				}
+				else{
+					Veiculo carro1 = bancoVeiculos.BuscarVeiculo(placaText.getText());
+					clienteLogado.registrarVeiculoHistorico(carro1);
+					carro1.setDisponibilidade(false);
+					JOptionPane.showMessageDialog(null,"Veiculo Locado Com Sucesso");
+				}
+			}
+		});
 		btnNewButton.setIcon(new ImageIcon(TelaAlugarVeiculo.class.getResource("/interfaceGrafica/Images/VeiculoRent.png")));
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 12));
@@ -56,22 +80,36 @@ public class TelaAlugarVeiculo extends TelaVeiculo {
 		JLabel lblNewLabel = new JLabel("Placa:");
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		placaText = new JTextField();
+		placaText.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Dias:");
 		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		
+		JLabel ValorTotal = new JLabel("00.00");
+		ValorTotal.setFont(new Font("Arial", Font.PLAIN, 14));
+		
 		JButton btnNewButton_1 = new JButton("Calcular Valor:");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (placaText.getText().isEmpty() == true|| textField_1.getText().isEmpty() == true){
+					JOptionPane.showMessageDialog(null,"Preencha Todos os Campos","Warming", JOptionPane.WARNING_MESSAGE);
+					
+				}else if (bancoVeiculos.BuscarVeiculo(placaText.getText()) == null) {
+					JOptionPane.showMessageDialog(null,"Veiculo Não Encontrado","Warming", JOptionPane.WARNING_MESSAGE);
+				}
+				else{
+					Float preço = bancoVeiculos.BuscarVeiculo(placaText.getText()).getDiaria();
+					int dias = Integer.parseInt(textField_1.getText());
+					double precoFinal = preço * dias;
+					String PrecoString = Double.toString(precoFinal);
+					ValorTotal.setText(PrecoString);
+				}
+			}
+		});
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		btnNewButton_1.setForeground(Color.BLACK);
-		
-		JLabel ValorTotal = new JLabel("00.00");
-		ValorTotal.setFont(new Font("Arial", Font.PLAIN, 14));
 		
 		JLabel lblNewLabel_2 = new JLabel("R$:");
 		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 11));
@@ -91,7 +129,7 @@ public class TelaAlugarVeiculo extends TelaVeiculo {
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 								.addComponent(btnNewButton_1)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(placaText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
 									.addComponent(lblNewLabel_1)))))
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -115,7 +153,7 @@ public class TelaAlugarVeiculo extends TelaVeiculo {
 						.addComponent(lblNewLabel)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(placaText, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1)

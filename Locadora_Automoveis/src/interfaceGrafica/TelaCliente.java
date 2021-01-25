@@ -130,6 +130,7 @@ public class TelaCliente extends SignIn {
 	}
 	public void verHistorico() {
 		TelaHistoricoVeiculos historicoVeiculos = new TelaHistoricoVeiculos();
+		historicoVeiculos.showHistoricoVeiculo();
 		historicoVeiculos.setVisible(true);
 	}
 	public void atualizarSenha() {
