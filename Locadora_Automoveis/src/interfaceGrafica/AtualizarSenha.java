@@ -76,6 +76,8 @@ public class AtualizarSenha extends TelaCliente {
 		senhaAtualText.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Atualizar Senha");
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 11));
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setIcon(new ImageIcon(AtualizarSenha.class.getResource("/interfaceGrafica/Images/login-64.png")));
 		btnNewButton.addActionListener(e-> AtualizarSenha());

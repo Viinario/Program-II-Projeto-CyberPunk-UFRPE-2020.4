@@ -35,6 +35,7 @@ public class SignIn extends JFrame {
 	private JTextField textField_1;
 	protected InterfaceLogin bancoPessoas = new BancoPessoas();
 	protected static Cliente clienteLogado;
+	protected static String nome = " ";
 	/**
 	 * Launch the application.
 	 */
@@ -60,7 +61,7 @@ public class SignIn extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SignIn.class.getResource("/interfaceGrafica/Images/login69.png")));
 		setResizable(false);
 		setBackground(Color.BLACK);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 410, 448);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
@@ -141,6 +142,7 @@ public class SignIn extends JFrame {
 						clienteLogado = bancoPessoas.login(textField_1.getText(), textField.getText());
 						String bemVindo= "Bem Vindo!\n" + clienteLogado.getNome();
 						JOptionPane.showMessageDialog(null, bemVindo);
+						nome = clienteLogado.getNome();
 						TelaCliente telaCliente = new TelaCliente();
 						telaCliente.setVisible(true);
 					}

@@ -45,9 +45,9 @@ public class TelaCliente extends SignIn {
 	 * Create the frame.
 	 */
 	public TelaCliente() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaCliente.class.getResource("/interfaceGrafica/Images/login69.png")));
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 443, 284);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -71,19 +71,24 @@ public class TelaCliente extends SignIn {
 		historicoVeiculoButton.setBackground(Color.WHITE);
 		historicoVeiculoButton.addActionListener(e -> verHistorico());
 		
-		JLabel infoCliente = new JLabel("New label");
+		JLabel infoCliente = new JLabel(nome);
 		infoCliente.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		infoCliente.setText(clienteLogado.getNome());
 		
 		JLabel lblNewLabel_1 = new JLabel("Bem Vindo Cliente:");
 		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 13));
 		lblNewLabel_1.setForeground(Color.BLACK);
 		
-		JButton btnNewButton = new JButton("Alugar Veiculo");
-		btnNewButton.setForeground(Color.BLACK);
-		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setIcon(new ImageIcon(TelaCliente.class.getResource("/interfaceGrafica/Images/VeiculoRent.png")));
+		JButton AlugarVeiculoButton = new JButton("Alugar Veiculo");
+		AlugarVeiculoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaVeiculo veiculo = new TelaVeiculo();
+				veiculo.setVisible(true);
+			}
+		});
+		AlugarVeiculoButton.setForeground(Color.BLACK);
+		AlugarVeiculoButton.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		AlugarVeiculoButton.setBackground(Color.WHITE);
+		AlugarVeiculoButton.setIcon(new ImageIcon(TelaCliente.class.getResource("/interfaceGrafica/Images/VeiculoRent.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -99,7 +104,7 @@ public class TelaCliente extends SignIn {
 						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 							.addComponent(historicoVeiculoButton)
 							.addPreferredGap(ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-							.addComponent(btnNewButton))
+							.addComponent(AlugarVeiculoButton))
 						.addComponent(atualizarInfoButton))
 					.addContainerGap())
 		);
@@ -117,7 +122,7 @@ public class TelaCliente extends SignIn {
 					.addComponent(atualizarInfoButton)
 					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnNewButton)
+						.addComponent(AlugarVeiculoButton)
 						.addComponent(historicoVeiculoButton))
 					.addGap(56))
 		);
@@ -131,5 +136,4 @@ public class TelaCliente extends SignIn {
 		AtualizarSenha atualizar = new AtualizarSenha();
 		atualizar.setVisible(true);
 	}
-	
 }
