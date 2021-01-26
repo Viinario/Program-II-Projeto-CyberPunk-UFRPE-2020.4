@@ -1,6 +1,7 @@
 package interfaceGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,7 +20,10 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JRadioButton;
 
 public class TelaEditarVeiculo extends TelaVeiculo {
 
@@ -61,42 +65,43 @@ public class TelaEditarVeiculo extends TelaVeiculo {
 		placaText.setColumns(10);
 		
 		diariaText = new JTextField();
-		diariaText.setBounds(175, 184, 86, 20);
+		diariaText.setBounds(175, 184, 104, 20);
 		contentPane.add(diariaText);
 		diariaText.setColumns(10);
 		
-		JCheckBox checkDisponivel = new JCheckBox("Disponivel");
-		checkDisponivel.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		checkDisponivel.setBackground(Color.WHITE);
-		checkDisponivel.setBounds(171, 110, 97, 23);
-		contentPane.add(checkDisponivel);
+		JRadioButton rdbtnNaoDisponivel = new JRadioButton("N\u00E3o disponivel");
+		rdbtnNaoDisponivel.setBackground(Color.WHITE);
+		rdbtnNaoDisponivel.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		rdbtnNaoDisponivel.setBounds(171, 136, 127, 23);
+		contentPane.add(rdbtnNaoDisponivel);
 		
-		JCheckBox checkNaoDisponivel = new JCheckBox("N\u00E3o Disponivel");
-		checkNaoDisponivel.setBackground(Color.WHITE);
-		checkNaoDisponivel.setFont(new Font("Arial Black", Font.PLAIN, 11));
-		checkNaoDisponivel.setBounds(171, 136, 127, 23);
-		contentPane.add(checkNaoDisponivel);
+		JRadioButton rdbtnDisponivel = new JRadioButton("Disponivel");
+		rdbtnDisponivel.setFont(new Font("Arial Black", Font.PLAIN, 11));
+		rdbtnDisponivel.setBackground(Color.WHITE);
+		rdbtnDisponivel.setBounds(171, 110, 127, 23);
+		contentPane.add(rdbtnDisponivel);
+		
+		ButtonGroup g = new ButtonGroup();
+		g.add(rdbtnDisponivel);
+		g.add(rdbtnNaoDisponivel);
 		
 		JButton btnNewButton = new JButton("Disponibilidade");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(checkDisponivel.isSelected() == false && checkNaoDisponivel.isSelected() == false) {
+				if(rdbtnDisponivel.isSelected() == false && rdbtnDisponivel.isSelected() == false) {
 					JOptionPane.showMessageDialog(null,"Selecione uma das Opções (Disponivel / Não Disponivel)","Edit Error", JOptionPane.WARNING_MESSAGE);
-				}
-				else if(checkDisponivel.isSelected() == true && checkNaoDisponivel.isSelected() == true) {
-					JOptionPane.showMessageDialog(null,"Selecione Somente uma Opção (Disponivel / Não Disponivel)","Edit Error", JOptionPane.WARNING_MESSAGE);
 				}
 				else if(bancoVeiculos.BuscarVeiculo(placaText.getText()) == null) {
 					JOptionPane.showMessageDialog(null,"Veiculo Não Encontrado","Edit Error", JOptionPane.WARNING_MESSAGE);
 				}else {
 					Veiculo carro = bancoVeiculos.BuscarVeiculo(placaText.getText());
-					if(checkNaoDisponivel.isSelected() == true) {
+					if(rdbtnNaoDisponivel.isSelected() == true) {
 						carro.setDisponibilidade(false);
 						JOptionPane.showMessageDialog(null,"Alteração Realizada Com Sucesso");
 						System.out.println(carro);
 						
 					}
-					else if(checkDisponivel.isSelected() == true) {
+					else if(rdbtnDisponivel.isSelected() == true) {
 						carro.setDisponibilidade(true);
 						JOptionPane.showMessageDialog(null,"Alteração Realizada Com Sucesso");
 					}
@@ -142,6 +147,8 @@ public class TelaEditarVeiculo extends TelaVeiculo {
 		lblNewLabel_2.setIcon(new ImageIcon(TelaEditarVeiculo.class.getResource("/interfaceGrafica/Images/Popular.png")));
 		lblNewLabel_2.setBounds(238, 11, 71, 31);
 		contentPane.add(lblNewLabel_2);
+		
+		
 		
 	}
 }
