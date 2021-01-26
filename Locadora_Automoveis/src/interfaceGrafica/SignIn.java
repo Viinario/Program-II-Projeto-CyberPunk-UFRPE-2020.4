@@ -1,6 +1,7 @@
 package interfaceGrafica;
 
 import interfaces.InterfaceLogin;
+import pessoa.Administrador;
 import pessoa.BancoPessoas;
 import pessoa.Cliente;
 import pessoa.Pessoa;
@@ -33,13 +34,17 @@ public class SignIn extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	protected InterfaceLogin bancoPessoas = new BancoPessoas();
+	protected static InterfaceLogin bancoPessoas = new BancoPessoas();
 	protected static Cliente clienteLogado;
+	protected static Administrador admLogado;
 	protected static String nome = " ";
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		VeiculosEscanciados veiculosteste = new VeiculosEscanciados();
+		bancoPessoas.RegistrarAdm("admin","admin","admin123");
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -134,11 +139,17 @@ public class SignIn extends JFrame {
 					JOptionPane.showMessageDialog(null,"Preencha Todos Os Campos","Warming", JOptionPane.WARNING_MESSAGE);
 					}
 				else {
-					if (bancoPessoas.login(textField_1.getText(), textField.getText()) == null){
+					if(bancoPessoas.loginAdm(textField_1.getText(), textField.getText()) != null) {
+						admLogado = bancoPessoas.loginAdm(textField_1.getText(), textField.getText());
+						JOptionPane.showMessageDialog(null, "Bem Vindo Administrador");
+						TelaAdmin telaAdmin = new TelaAdmin();
+						telaAdmin.setVisible(true);
+					}
+					else if (bancoPessoas.login(textField_1.getText(), textField.getText()) == null){
 						JOptionPane.showMessageDialog(null,"Conta Não Encontrada","Login Error", JOptionPane.WARNING_MESSAGE);
 						
 				}
-					else {
+				else {
 						clienteLogado = bancoPessoas.login(textField_1.getText(), textField.getText());
 						String bemVindo= "Bem Vindo!\n" + clienteLogado.getNome();
 						JOptionPane.showMessageDialog(null, bemVindo);
@@ -146,11 +157,11 @@ public class SignIn extends JFrame {
 						TelaCliente telaCliente = new TelaCliente();
 						telaCliente.setVisible(true);
 						dispose();
+						
+					}
 					}
 	}
-		}
 	public void SignUpPanel() {
-		VeiculosEscanciados veiculosteste = new VeiculosEscanciados();
 		SignUp signUp = new SignUp();
 		signUp.setVisible(true);
 	  }

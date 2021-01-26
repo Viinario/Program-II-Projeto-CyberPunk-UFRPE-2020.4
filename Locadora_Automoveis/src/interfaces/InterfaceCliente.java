@@ -15,6 +15,7 @@ public interface InterfaceCliente {
 	List<Popular> visualizarPopulares();
 	List<Luxo> visualizarLuxos();
 	List<Veiculo> visualizarHistoricoPessoal(Cliente cliente);
+	List<Veiculo> visualizarTodosVeiculos();
 	void alugarVeiculo(Cliente cliente, Veiculo veiculo);
 	double calcularTotal(Veiculo veiculo, int dias);
 	

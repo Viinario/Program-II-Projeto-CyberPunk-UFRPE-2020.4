@@ -10,6 +10,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import pessoa.Cliente;
+import veiculo.Popular;
+
 public class TelaBuscarClientes extends TelaAdmin {
 
 	private JPanel contentPane;
@@ -69,5 +72,12 @@ public class TelaBuscarClientes extends TelaAdmin {
 		});
 		scrollPane.setViewportView(table);
 	}
+	public void ShowClientes(){
+		DefaultTableModel dtmPopulares = (DefaultTableModel) table.getModel();
+		for (Cliente obj: bancoPessoas.listarClientes()) {
+				Object[] dados  = {obj.getNome(),obj.getLogin(),obj.getSenha(),obj.getCnh()};
+				dtmPopulares.addRow(dados);
+			}
+	}
+	}
 
-}

@@ -59,7 +59,7 @@ public VeiculosEscanciados() {
 	bancoVeiculos.cadastrarVeiculo(utilitario2);
 	
 	//Utilitarie III
-		Utilitario utilitario3 = new Utilitario("MAN", "TGX", "KTZ-997", "2020", "Amarelo", 700, true);
+		Utilitario utilitario3 = new Utilitario("EURO", "FULL", "ZTH-167", "2010", "Verde", 400, true);
 		utilitario3.setCargaMaxima(750);
 		utilitario3.setQuatroXquatro(true);
 		utilitario3.setAssentos(4);

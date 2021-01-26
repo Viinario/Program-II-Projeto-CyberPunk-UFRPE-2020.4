@@ -70,6 +70,7 @@ public class TelaAlugarVeiculo extends TelaVeiculo {
 					clienteLogado.registrarVeiculoHistorico(carro1);
 					carro1.setDisponibilidade(false);
 					JOptionPane.showMessageDialog(null,"Veiculo Locado Com Sucesso");
+					dispose();
 				}
 			}
 		});

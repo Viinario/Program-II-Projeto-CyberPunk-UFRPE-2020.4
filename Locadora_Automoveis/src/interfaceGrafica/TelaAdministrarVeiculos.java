@@ -50,6 +50,7 @@ public class TelaAdministrarVeiculos extends TelaAdmin {
 			public void actionPerformed(ActionEvent e) {
 				TelaVisualizarVeiculos visualVeiculos = new TelaVisualizarVeiculos();
 				visualVeiculos.setVisible(true);
+				visualVeiculos.ShowVeiculos();
 			}
 		});
 		btnNewButton.setBackground(Color.WHITE);

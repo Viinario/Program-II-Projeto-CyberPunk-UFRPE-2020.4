@@ -50,7 +50,7 @@ public class TelaCliente extends SignIn {
 		setResizable(false);
 		setBounds(100, 100, 443, 284);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		

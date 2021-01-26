@@ -43,7 +43,10 @@ public List<Utilitario> visualizarUtilitarios() {
 	}
 	return utilitarios;
 }
-
+@Override
+public List<Veiculo> visualizarTodosVeiculos(){
+	return veiculos;
+}
 @Override
 public List<Popular> visualizarPopulares() {
 	System.out.println("\nLISTA DE TODOS OS POPULARES");

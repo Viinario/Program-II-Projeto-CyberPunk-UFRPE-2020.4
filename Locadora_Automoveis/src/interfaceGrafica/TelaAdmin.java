@@ -41,10 +41,9 @@ public class TelaAdmin extends SignIn {
 	public TelaAdmin() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TelaAdmin.class.getResource("/interfaceGrafica/Images/login69.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 456, 311);
+		setBounds(100, 100, 454, 241);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -54,12 +53,13 @@ public class TelaAdmin extends SignIn {
 			public void actionPerformed(ActionEvent e) {
 				TelaBuscarClientes buscarClientes = new TelaBuscarClientes();
 				buscarClientes.setVisible(true);
+				buscarClientes.ShowClientes();
 			}
 		});
 		btnNewButton.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setBounds(10, 205, 187, 56);
+		btnNewButton.setBounds(10, 127, 187, 56);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Administrar Veiculo");
@@ -71,17 +71,23 @@ public class TelaAdmin extends SignIn {
 		});
 		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		btnNewButton_1.setBounds(235, 205, 176, 56);
+		btnNewButton_1.setBounds(241, 127, 176, 56);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblNewLabel = new JLabel("Bem Vindo Administrador");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 13));
-		lblNewLabel.setBounds(81, 50, 205, 37);
+		lblNewLabel.setBounds(83, 53, 205, 37);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(TelaAdmin.class.getResource("/interfaceGrafica/Images/Cliente1.png")));
-		lblNewLabel_1.setBounds(327, 11, 103, 88);
+		lblNewLabel_1.setBounds(324, 11, 103, 88);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(TelaAdmin.class.getResource("/interfaceGrafica/Images/login-64.png")));
+		lblNewLabel_2.setBounds(28, 66, 46, 14);
+		contentPane.add(lblNewLabel_2);
 	}
 }

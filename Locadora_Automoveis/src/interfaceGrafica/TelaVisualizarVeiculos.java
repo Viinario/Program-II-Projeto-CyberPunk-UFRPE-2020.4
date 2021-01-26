@@ -10,7 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class TelaVisualizarVeiculos extends TelaAdministrarVeiculos {
+import veiculo.Luxo;
+import veiculo.Veiculo;
+
+public class TelaVisualizarVeiculos extends TelaVeiculo {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -51,17 +54,17 @@ public class TelaVisualizarVeiculos extends TelaAdministrarVeiculos {
 			new Object[][] {
 			},
 			new String[] {
-				"Fabricante", "Modelo", "Placa"
+				"Disponivel", "Diaria", "Cor", "Fabricante", "Modelo", "Placa"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class
+				Boolean.class, Float.class, String.class, String.class, String.class, String.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				false, false, false
+				false, true, true, true, true, true
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
@@ -69,5 +72,11 @@ public class TelaVisualizarVeiculos extends TelaAdministrarVeiculos {
 		});
 		scrollPane.setViewportView(table);
 	}
-
-}
+	public void ShowVeiculos(){
+		DefaultTableModel dtmLuxos = (DefaultTableModel) table.getModel();
+		for (Veiculo obj: bancoVeiculos.visualizarTodosVeiculos()) {
+				Object[] dados  = {obj.isDisponibilidade(),obj.getDiaria(),obj.getCor(),obj.getFabricante(),obj.getModelo(),obj.getPlaca()};
+				dtmLuxos.addRow(dados);
+			}
+		}
+	}
