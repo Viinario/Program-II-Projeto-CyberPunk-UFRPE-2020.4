@@ -32,7 +32,6 @@ public void cadastrarVeiculo(Veiculo veiculo) {
 			luxos.add((Luxo)veiculo);
 		}
 	}else {
-		System.out.println("ERROR|OPERAÇÃO; ESSE VEICULO JÁ EXISTE");
 	}
 	}
 

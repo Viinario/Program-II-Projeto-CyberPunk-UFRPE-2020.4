@@ -197,6 +197,7 @@ public class SignUp extends SignIn {
 			JOptionPane.showMessageDialog(null,"Passwords não são iguais","Warning", JOptionPane.WARNING_MESSAGE);
 		}else{
 			bancoPessoas.registrar(nomeText.getText(), cnhText.getText(),loginText.getText(), passText.getText());
+			dispose();
 		}
 	}
 }

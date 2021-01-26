@@ -145,6 +145,7 @@ public class SignIn extends JFrame {
 						nome = clienteLogado.getNome();
 						TelaCliente telaCliente = new TelaCliente();
 						telaCliente.setVisible(true);
+						dispose();
 					}
 	}
 		}
